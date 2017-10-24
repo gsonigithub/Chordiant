@@ -1,0 +1,120 @@
+<html layout:decorator="layouts/navbar_layout">
+<body>
+	<th:block layout:fragment="content">
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-newspaper-o"></i><span>Reports</span>
+					</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div th:class="col-sm-1">Period</div>
+					<div th:class="col-sm-4">
+						<select id="reportType" class="form-control">
+							<option th:value="daily" th:selected="${'daily' == reportType}">Daily</option>
+							<option th:value="weekly" th:selected="${'weekly' == reportType}">Weekly</option>
+							<option th:value="monthly"
+								th:selected="${'monthly' == reportType}">Monthly</option>
+						</select>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 page-header">
+					<div class="panel panel-default">
+						<div class="panel-heading">Database</div>
+						<div class="panel-body">Body to contain details for DB
+							queries</div>
+						<div class="panel-footer"></div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 page-header">
+					<div class="panel panel-default">
+						<div class="panel-heading">Offer Logic Deployed</div>
+						<div class="panel-body">Body to contain details for Offer
+							Logic Deployed</div>
+						<div class="panel-footer"></div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 page-header">
+					<div class="panel panel-default">
+						<div class="panel-heading">J4U WebServices</div>
+						<div class="panel-body">Status:</div>
+						<div class="panel-footer"></div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 page-header">
+					<div class="panel panel-default">
+						<div class="panel-heading">Offers</div>
+						<div class="panel-body">Offers</div>
+						<div class="panel-footer"></div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 page-header">
+					<div class="panel panel-default">
+						<div class="panel-heading">Transaction Count</div>
+						<div class="panel-body">Transaction Count</div>
+						<div class="panel-footer"></div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12 page-header">
+					<div class="panel panel-default">
+						<div class="panel-heading">MDM</div>
+						<div class="panel-body">MDM</div>
+						<div class="panel-footer"></div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<style>
+circle,path {
+	cursor: pointer;
+}
+
+circle {
+	fill: none;
+	pointer-events: all;
+}
+</style>
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			$(document).ready(function() {
+
+				var reportType = $('#reportType');
+
+				reportType.selectbox('attach');
+
+			});
+			/*]]>*/
+		</script>
+	</th:block>
+</body>
+</html>

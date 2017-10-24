@@ -1,0 +1,28 @@
+.radComponent {
+	fill: #FFFFFF;
+}
+
+.radLabel {
+	fill: #000000;
+}
+
+#radOuter {
+	background: #FFFFFF;
+	color: #000;
+	float: right;
+}
+
+#radDiv2 .arc {
+	stroke-weight: 0.1;
+	fill: #5cb85c;
+}
+
+#radDiv2 .arc2 {
+	stroke-weight: 0.1;
+	fill: #d9534f;
+}
+
+#radDiv2 {
+	width:45px;
+	height:45px;
+}

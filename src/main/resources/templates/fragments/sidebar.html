@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <ul class="nav" id="side-menu" th:fragment="sidebar">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </li>
+            <li th:each="sideMenuItem : ${sideMenuItems}">
+                <a href="#" th:href="@{${sideMenuItem.url}}">
+                    <span th:text="#{__${sideMenuItem.menuTitleKey}__}"></span>
+                </a>
+                <ul class="nav nav-second-level" th:if="${not #lists.isEmpty(sideMenuItem.secondLevelItems)}">
+                    <li th:each="secondLevelItem : ${sideMenuItem.secondLevelItems}">
+                        <a href="#" th:href="@{${secondLevelItem.url}}">
+                            <span th:text="#{__${secondLevelItem.menuTitleKey}__}"></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>

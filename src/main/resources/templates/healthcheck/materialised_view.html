@@ -1,0 +1,104 @@
+<html layout:decorator="layouts/navbar_layout">
+
+<head>
+<style>
+th,td {
+	text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+	<th:block layout:fragment="content">
+		<div id="page-wrapper">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-money"></i><span>View details</span>
+					</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<h3>Recharge and Get</h3>
+				<div class="col-lg-2">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Count of updates for last 4hrs</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td th:text="${rechargeAndGetCount}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<h3>NBA_REPORTS_MAIN_MVIEW_ALL</h3>
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+
+									<th>Object Name</th>
+									<th>Object Type</th>
+									<th>Last DDL</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="reportingView: ${reportingViews}">
+									<td th:text="${reportingView.objectName}"></td>
+									<td th:text="${reportingView.objectType}"></td>
+									<td th:text="${reportingView.lastDdl}"></td>
+
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<h3>CUST_REMAINING_EFFORT tables ddl</h3>
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+
+									<th>Object Name</th>
+									<th>Object Type</th>
+									<th>Last DDL</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="rechargeAndGetView: ${rechargeAndGetViews}">
+									<td th:text="${rechargeAndGetView.objectName}"></td>
+									<td th:text="${rechargeAndGetView.objectType}"></td>
+									<td th:text="${rechargeAndGetView.lastDdl}"></td>
+
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</th:block>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+.bars {
+    pointer-events: none;
+}
+
+.bar {
+    fill: #5cb85c;
+    @ include border-radius(0px);
+    @ include transition-property(fill);
+    @ include transition-duration(.5s);
+    &: hover {
+        fill : $ graph-highlight-color;
+        cursor: hand;
+    }
+}
+
+.image_status {
+    height: 6px;
+    width: 100px;
+}
+
+.box {
+    margin: 10px;
+}
+
+#boxPercentage {
+    width: 80px
+}
+
+.arrowGreen{
+    color: #5cb85c;
+}
+
+.arrowRed{
+    color: #d9534f;
+}
+
+.graphBox{
+    height: 50px;
+    width: 50px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}

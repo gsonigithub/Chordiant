@@ -1,0 +1,89 @@
+<html>
+<head>
+
+</head>
+<body>
+	<th:block th:fragment="results">
+
+		<div class="col-lg-12">
+			<div id="chart1"
+				style="margin-top: 20px; margin-left: 40px; width: 1500px; height: 600px"></div>
+		</div>
+
+
+		<div id="chart1">Chart 1 Div</div>
+
+
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			$(document).ready(function() {
+				
+				  // Task start date
+                $('#start-date').datetimepicker({
+                    useCurrent : true,
+                    icons : {
+                        date : 'fa fa-calendar'
+                    },
+                    pickTime : false,
+                    showToday : true
+                });
+
+                // Task end date
+                $('#end-date').datetimepicker({
+                    useCurrent : true,
+                    icons : {
+                        date : 'fa fa-calendar'
+                    },
+                    pickTime : false,
+                    showToday : true
+                });
+				$.jqplot.config.enablePlugins = true;
+				var s1 = [ 2, 6, 7, 10 ];
+				var ticks = [ 'a', 'b', 'c', 'd' ];
+
+				plot1 = $.jqplot('chart1', [ s1 ], {
+					// Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+					animate : !$.jqplot.use_excanvas,
+					seriesDefaults : {
+						renderer : $.jqplot.BarRenderer,
+						rendererOptions: {
+			    			color: '#90CAF9'
+			                },
+					},
+					  grid: {
+		                    drawBorder: false,
+		                    drawGridlines: false,
+		                    background: '#eafaff',
+		                    shadow: false
+		            },
+		            highlighter: {
+		                show: true,
+		                sizeAdjust: 7.5
+		              },
+		            cursor:{
+		            	show:false
+		            },
+					axes : {
+						xaxis : {
+							renderer : $.jqplot.CategoryAxisRenderer,
+							ticks : ticks
+						}
+					},
+					highlighter : {
+						show : false
+					}
+				});
+
+				$('#chart1').show();
+
+			});
+			/*]]>*/
+		</script>
+
+
+
+
+
+	</th:block>
+</body>
+</html>

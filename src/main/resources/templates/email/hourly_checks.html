@@ -1,0 +1,206 @@
+<html layout:decorator="layouts/email_layout">
+<body>
+	<th:block layout:fragment="content">
+		<div>
+			<p style="font-size:12px; font-family:Calibri">Hourly Health Card at <span th:text="${dateReported}"></span></p>
+			
+			<p style="font-size:12px; font-family:Calibri">Offer Count: 15 minutes</p>
+			<table border="1" style="border-collapse: collapse; font-size:12px; font-family:Calibri">
+				<thead>
+					<tr>
+						<th>USSD SHOWN</th>
+						<th>USSD ACCEPTED</th>
+						<th>PPFE SHOWN</th>
+						<th>CCR SHOWN</th>
+						<th>CCR ACCEPTED</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="offerView: ${offerCountView}">
+						<td th:text="${offerView.ussdShown}"></td>
+						<td th:text="${offerView.ussdAccepted}"></td>
+						<td th:text="${offerView.ppfeShown}"></td>
+						<td th:text="${offerView.ccrShown}"></td>
+						<td th:text="${offerView.ccrAccepted}"></td>												
+					</tr>
+				</tbody>
+			</table>
+			<p style="font-size:12px; font-family:Calibri">Offer DB Count: 10 minutes interval</p>
+			<table border="1" style="border-collapse: collapse; font-size:12px; font-family:Calibri">
+				<thead>
+					<tr>
+						<th>Offered On</th>
+						<th>USSD</th>
+						<th>PPFE</th>
+						<th>APP</th>						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="offerDBView: ${offerDBCountView}">
+						<td th:text="${offerDBView.offeredOn}"></td>
+						<td th:text="${offerDBView.ussd}"></td>
+						<td th:text="${offerDBView.ppfe}"></td>
+						<td th:text="${offerDBView.mobiApp}"></td>						
+					</tr>
+				</tbody>
+			</table>
+			<p style="font-size:12px; font-family:Calibri">KPI Count: Access Event</p>
+			<table border="1" style="border-collapse: collapse;font-size:12px; font-family:Calibri">
+				<thead>
+					<tr>
+						<th>Channel</th>
+						<th>Server Name</th>
+						<th>RTDS1</th>
+						<th>RTDS2</th>
+						<th>RTDS3</th>
+						<th>RTDS4</th>
+						<th>RTDS5</th>
+						<th>RTDS6</th>
+						<th>RTDS7</th>
+						<th>RTDS8</th>
+						<th>RTDS9</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="accessDatabaseView: ${accessEventDBViews}">
+						<td th:text="${accessDatabaseView.channelName}"></td>
+						<td th:text="${accessDatabaseView.serverName}"></td>
+						<td th:text="${accessDatabaseView.RTDS1}"></td>
+						<td th:text="${accessDatabaseView.RTDS2}"></td>
+						<td th:text="${accessDatabaseView.RTDS3}"></td>
+						<td th:text="${accessDatabaseView.RTDS4}"></td>
+						<td th:text="${accessDatabaseView.RTDS5}"></td>
+						<td th:text="${accessDatabaseView.RTDS6}"></td>
+						<td th:text="${accessDatabaseView.RTDS7}"></td>
+						<td th:text="${accessDatabaseView.RTDS8}"></td>
+						<td th:text="${accessDatabaseView.RTDS9}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+			<p style="font-size:12px; font-family:Calibri">KPI Count: Event</p>
+			<table border="1" style="border-collapse: collapse; font-size:12px; font-family:Calibri">
+				<thead>
+					<tr>
+						<th>Channel</th>
+						<th>Server Name</th>
+						<th>RTDS1</th>
+						<th>RTDS2</th>
+						<th>RTDS3</th>
+						<th>RTDS4</th>
+						<th>RTDS5</th>
+						<th>RTDS6</th>
+						<th>RTDS7</th>
+						<th>RTDS8</th>
+						<th>RTDS9</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="eventDatabaseView: ${eventDBViews}">
+						<td th:text="${eventDatabaseView.channelName}"></td>
+						<td th:text="${eventDatabaseView.serverName}"></td>
+						<td th:text="${eventDatabaseView.RTDS1}"></td>
+						<td th:text="${eventDatabaseView.RTDS2}"></td>
+						<td th:text="${eventDatabaseView.RTDS3}"></td>
+						<td th:text="${eventDatabaseView.RTDS4}"></td>
+						<td th:text="${eventDatabaseView.RTDS5}"></td>
+						<td th:text="${eventDatabaseView.RTDS6}"></td>
+						<td th:text="${eventDatabaseView.RTDS7}"></td>
+						<td th:text="${eventDatabaseView.RTDS8}"></td>
+						<td th:text="${eventDatabaseView.RTDS9}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+			<p style="font-size:12px; font-family:Calibri">TPS: USSD</p>
+			<table border="1" style="border-collapse: collapse; font-size:12px; font-family:Calibri">
+				<thead>
+					<tr>
+						<th>TIMESTAMP</th>
+						<th>CHANNEL</th>
+						<th>TYPE</th>
+						<th>AMOUNT</th>
+						<th>TPS</th>
+						<th>L100</th>
+						<th>L200</th>
+						<th>L300</th>
+						<th>L400</th>
+						<th>L500</th>
+						<th>L600</th>
+						<th>L700</th>
+						<th>L800</th>
+						<th>L900</th>
+						<th>L1000</th>
+						<th>TARGET SLA</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="tpsUSSDView: ${tpsUSSDViews}">
+						<td th:text="${tpsUSSDView.ts}"></td>
+						<td th:text="${tpsUSSDView.channelName}"></td>
+						<td th:text="${tpsUSSDView.type}"></td>
+						<td th:text="${tpsUSSDView.amount}"></td>
+						<td th:text="${tpsUSSDView.tps}"></td>
+						<td th:text="${tpsUSSDView.l100}"></td>
+						<td th:text="${tpsUSSDView.l200}"></td>
+						<td th:text="${tpsUSSDView.l300}"></td>
+						<td th:text="${tpsUSSDView.l400}"></td>
+						<td th:text="${tpsUSSDView.l500}"></td>
+						<td th:text="${tpsUSSDView.l600}"></td>
+						<td th:text="${tpsUSSDView.l700}"></td>
+						<td th:text="${tpsUSSDView.l800}"></td>
+						<td th:text="${tpsUSSDView.l900}"></td>
+						<td th:text="${tpsUSSDView.l1000}"></td>
+						<td th:text="${tpsUSSDView.sla_target}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+			<p style="font-size:12px; font-family:Calibri">TPS: PPFE</p>
+			<table border="1" style="border-collapse: collapse; font-size:12px; font-family:Calibri">
+				<thead>
+					<tr>
+						<th>TIMESTAMP</th>
+						<th>CHANNEL</th>
+						<th>TYPE</th>
+						<th>AMOUNT</th>
+						<th>TPS</th>
+						<th>L100</th>
+						<th>L200</th>
+						<th>L300</th>
+						<th>L400</th>
+						<th>L500</th>
+						<th>L600</th>
+						<th>L700</th>
+						<th>L800</th>
+						<th>L900</th>
+						<th>L1000</th>
+						<th>TARGET SLA</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="tpsPPFEView: ${tpsPPFEViews}">
+						<td th:text="${tpsPPFEView.ts}"></td>
+						<td th:text="${tpsPPFEView.channelName}"></td>
+						<td th:text="${tpsPPFEView.type}"></td>
+						<td th:text="${tpsPPFEView.amount}"></td>
+						<td th:text="${tpsPPFEView.tps}"></td>
+						<td th:text="${tpsPPFEView.l100}"></td>
+						<td th:text="${tpsPPFEView.l200}"></td>
+						<td th:text="${tpsPPFEView.l300}"></td>
+						<td th:text="${tpsPPFEView.l400}"></td>
+						<td th:text="${tpsPPFEView.l500}"></td>
+						<td th:text="${tpsPPFEView.l600}"></td>
+						<td th:text="${tpsPPFEView.l700}"></td>
+						<td th:text="${tpsPPFEView.l800}"></td>
+						<td th:text="${tpsPPFEView.l900}"></td>
+						<td th:text="${tpsPPFEView.l1000}"></td>
+						<td th:text="${tpsPPFEView.sla_target}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+	</th:block>
+</body>
+</html>

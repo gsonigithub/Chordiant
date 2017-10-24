@@ -1,0 +1,88 @@
+<html layout:decorator="layouts/navbar_layout">
+
+<head>
+<style>
+th,td {
+	text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+	<th:block layout:fragment="content">
+		<div id="page-wrapper">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-money"></i><span>Offers presented last 15
+							min</span>
+					</h1>
+				</div>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+							<th th:text="#{offerView.channel}">Channel</th>
+							<th th:text="#{offerView.count}">Count</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>USSD</td><td></td>
+						</tr>
+						<tr>
+							<td>Shown</td>
+							<td th:text="${offerView.ussdShownCount}"></td>
+						</tr>
+						<tr>
+							<td>Later</td>
+							<td th:text="${offerView.ussdLaterCount}"></td>
+						</tr>
+						<tr>
+							<td>Accepted</td>
+							<td th:text="${offerView.ussdAcceptedCount}"></td>
+						</tr>
+						<tr>
+							<td>PPFE</td><td></td>
+						</tr>
+						<tr>
+							<td>Shown</td>
+							<td th:text="${offerView.ppfeShownCount}"></td>
+						</tr>
+						<tr>
+							<td>Later</td>
+							<td th:text="${offerView.ppfeLaterCount}"></td>
+						</tr>
+						<tr>
+							<td>Accepted</td>
+							<td th:text="${offerView.ppfeAcceptedCount}"></td>
+						</tr>
+						<tr>
+							<td>CCR</td><td></td>
+						<tr>
+							<td>Shown</td>
+                            <td th:text="${offerView.ccrShownCount}"></td>
+                        </tr>
+                        <tr>
+                            <td>Later</td>
+                            <td th:text="${offerView.ccrLaterCount}"></td>
+                        </tr>
+                        <tr>
+                            <td>Accepted</td>
+                            <td th:text="${offerView.ccrAcceptedCount}"></td>
+                        </tr>
+						</tr>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</th:block>
+</body>
+
+</html>

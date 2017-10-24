@@ -1,0 +1,35 @@
+<html layout:decorator="layouts/email_layout">
+<body>
+	<th:block layout:fragment="content">
+		<div>
+
+			<h3>
+				J4U Offers Stats for last hour at <span th:text="${dateReported}"></span>
+			</h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>USERNAME</th>
+						<th>OFFER_EXISTS_IND</th>
+						<th>RESPONSE</th>
+						<th>FULFILMENT_IND</th>
+						<th>NUM_RECORDS</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="offerView: ${offerViews}">
+						<td th:text="${offerView.username}"></td>
+						<td th:text="${offerView.offerExistsInd}"></td>
+						<td th:text="${offerView.response}"></td>
+						<td th:text="${offerView.fulfilmentInd}"></td>
+						<td th:text="${offerView.numRecords}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+
+		</div>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<html layout:decorator="layouts/navbar_layout">
+
+<head>
+<style>
+th,td {
+	text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+	<th:block layout:fragment="content">
+		<div id="page-wrapper">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-money"></i><span>Web Services Status</span>
+					</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<h2>pcho001zatcrh Webservices</h2>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th th:text="#{webServiceStatusView.port}">Port</th>
+								<th th:text="#{webServiceStatusView.offersAvailable}">Offers
+									Available</th>
+								<th th:text="#{webServiceStatusView.status}">Status</th>
+								<th th:text="#{webServiceStatusView.responseTime}">Response Time</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="webServiceView: ${pcho001zatcrhWebServices}">
+								<td th:text="${webServiceView.port}"></td>
+								<td th:text="${webServiceView.offersAvailable}"></td>
+								<td th:text="${webServiceView.status}"></td>
+								<td th:text="${webServiceView.responseTime}"></td>
+							</tr>
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+			
+			         <div class="row">
+                <h2>pcho002zafsrh Webservices</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th th:text="#{webServiceStatusView.port}">Port</th>
+                                <th th:text="#{webServiceStatusView.offersAvailable}">Offers
+                                    Available</th>
+                                <th th:text="#{webServiceStatusView.status}">Status</th>
+                                <th th:text="#{webServiceStatusView.responseTime}">Response Time</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="webServiceView: ${pcho002zafsrhWebServices}">
+                                <td th:text="${webServiceView.port}"></td>
+                                <td th:text="${webServiceView.offersAvailable}"></td>
+                                <td th:text="${webServiceView.status}"></td>
+                                <td th:text="${webServiceView.responseTime}"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            
+                        <div class="row">
+                <h2>pcho003zatcrh Webservices</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th th:text="#{webServiceStatusView.port}">Port</th>
+                                <th th:text="#{webServiceStatusView.offersAvailable}">Offers
+                                    Available</th>
+                                <th th:text="#{webServiceStatusView.status}">Status</th>
+                                <th th:text="#{webServiceStatusView.responseTime}">Response Time</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="webServiceView: ${pcho003zatcrhWebServices}">
+                                <td th:text="${webServiceView.port}"></td>
+                                <td th:text="${webServiceView.offersAvailable}"></td>
+                                <td th:text="${webServiceView.status}"></td>
+                                <td th:text="${webServiceView.responseTime}"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+			<div class="row">
+                <h2>pcho004zafsrh Webservices</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th th:text="#{webServiceStatusView.port}">Port</th>
+                                <th th:text="#{webServiceStatusView.offersAvailable}">Offers
+                                    Available</th>
+                                <th th:text="#{webServiceStatusView.status}">Status</th>
+                                <th th:text="#{webServiceStatusView.responseTime}">Response Time</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="webServiceView: ${pcho004zafsrhWebServices}">
+                                <td th:text="${webServiceView.port}"></td>
+                                <td th:text="${webServiceView.offersAvailable}"></td>
+                                <td th:text="${webServiceView.status}"></td>
+                                <td th:text="${webServiceView.responseTime}"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+		</div>
+	</th:block>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<html layout:decorator="layouts/navbar_layout">
+<body>
+	<th:block layout:fragment="content">
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-tachometer"></i><span>Get Offers</span>
+					</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="formContainer">
+						<form class="form-horizontal" th:action="@{/getOffers}"
+							th:object="${criteriaView}" id="criteriaView" method="post"
+							role="form">
+
+
+
+							<div class="form-group">
+								<label for="msisdn" class="col-sm-2 control-label">MSISDN</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{msisdn}" class="form-control" />
+									<span class="input-group-addon"> <i class="fa fa-info"></i>
+									</span>
+								</div>
+
+
+
+							</div>
+
+
+							<div class="form-group">
+								<label for="server" class="col-sm-2 control-label">Server</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{server}" class="form-control" />
+									<span class="input-group-addon"> <i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+
+							<div class="form-group">
+
+								<label for="ports" class="col-sm-2 control-label">Ports
+									(comma delimited)</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{ports}" class="form-control" />
+									<span class="input-group-addon"> <i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+							<div th:class="form-group">
+								<button type="submit" class="btn btn-primary"
+									style="float: centre;">View</button>
+							</div>
+
+						</form>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Port</th>
+								<th>Offers</th>
+							</tr>
+						</thead>
+
+
+						<tbody>
+							<tr th:each="offer : ${j4uOffers}">
+								<td th:text="${offer.port}" />
+								<td>
+									<table class="table">
+										<thead>
+											<tr>
+												<th>Id</th>
+												<th>Name</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="product : ${offer.products}">
+												<td th:text="${product.id}"></td>
+												<td th:text="${product.name}"></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+
+
+		</div>
+
+	</th:block>
+</body>
+</html>

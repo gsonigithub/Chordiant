@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.1.201710100539-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>java:com.vodacom.chordiant.reporting.data.repository.DefaultDataRepository</config>
+		<config>java:com.vodacom.chordiant.reporting.service.impl.DefaultEmailService</config>
+		<config>java:com.vodacom.chordiant.reporting.service.impl.DefaultReportingService</config>
+		<config>java:com.vodacom.chordiant.reporting.schedulers.HealthCardScheduler</config>
+		<config>java:com.vodacom.chordiant.reporting.schedulers.HourlyHealthCardScheduler</config>
+		<config>java:com.vodacom.chordiant.reporting.ReportingMainApplication</config>
+		<config>java:com.vodacom.chordiant.reporting.schedulers.TransactionGraphScheduler</config>
+		<config>java:com.vodacom.chordiant.reporting.data.repository.TransactionStatisticsRepository</config>
+		<config>java:com.vodacom.chordiant.reporting.security.WebSecurityConfig</config>
+		<config>java:com.vodacom.chordiant.reporting.security.UserAuthenticationProvider</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

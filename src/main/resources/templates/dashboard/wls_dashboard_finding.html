@@ -1,0 +1,265 @@
+<html layout:decorator="layouts/navbar_layout">
+<body>
+	<th:block layout:fragment="content">
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-tachometer"></i><span>Add WLS Finding </span>
+					</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+
+
+
+
+					<div id="formContainer">
+						<form class="form-horizontal" th:action="@{/wls/findings/save}"
+							th:object="${findingForm}" id="findingForm"
+							method="post" role="form">
+
+							<input type="hidden" th:field="*{id}" />
+
+							<div th:class="form-group">
+								<label for="startDate" class="col-sm-2 control-label">Start
+									Date</label>
+								<div class="col-sm-4">
+									<div id="start-date" class="input-group date"
+										data-date-format="YYYY-MM-DD">
+										<input type="text" th:field="*{startDate}"
+											class="form-control" placeholder="YYYY-MM-DD" /> <span
+											class="input-group-addon"> <i class="fa fa-calendar"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div th:class="form-group">
+								<label for="endDate" class="col-sm-2 control-label">End
+									Date</label>
+								<div class="col-sm-4">
+									<div id="end-date" class="input-group date"
+										data-date-format="YYYY-MM-DD">
+										<input type="text" th:field="*{endDate}" class="form-control"
+											placeholder="YYYY-MM-DD" /> <span class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="startTime" class="col-sm-2 control-label">Start
+									Time</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{startTime}" class="form-control" />
+									<span class="input-group-addon"> <i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="endTime" class="col-sm-2 control-label">End
+									Time</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{endTime}" class="form-control" />
+									<span class="input-group-addon"> <i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="title" class="col-sm-2 control-label">Title</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{title}" class="form-control" />
+									<span class="input-group-addon"> <i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="description" class="col-sm-2 control-label"><span>Description</span></label>
+								<div class="col-sm-4">
+									<textarea rows="4" cols="50" th:field="*{description}"
+										class="form-control"></textarea>
+								</div>
+							</div>
+
+							<div th:class="form-group">
+								<label for="outageType" class="col-sm-2 control-label">Outage
+									Type</label>
+								<div class="col-sm-4">
+									<select th:field="*{outageType}" class="form-control">
+										<!--    <option th:value="minute">1 Minute</option> -->
+										<option th:value="sladrop">Sla Drop</option>
+										<option th:value="downtime">Down time</option>
+										<option th:value="both">Both</option>
+									</select>
+								</div>
+							</div>
+
+							<div th:class="form-group">
+								<label for="affectedSystem" class="col-sm-2 control-label">Affected
+									System</label>
+								<div class="col-sm-4">
+									<select th:field="*{affectedSystem}" class="form-control">
+										<option th:value="all">ALL</option>
+										<option th:value="wsGetOffers">WS getOffers</option>
+										<option th:value="wsSetResponse">WS setResponse</option>
+										<option th:value="ccrExternal">CCR External</option>
+										<option th:value="ccrAssessment">CCR Assessment</option>
+									</select>
+								</div>
+							</div>
+
+							<div th:class="form-group">
+								<label for="planned" class="col-sm-2 control-label">Planned</label>
+								<div class="col-sm-4">
+									<select th:field="*{planned}" class="form-control">
+										<!--    <option th:value="minute">1 Minute</option> -->
+										<option th:value="true">Yes</option>
+										<option th:value="false">No</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="downtime" class="col-sm-2 control-label">Down
+									Time</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{downtime}" class="form-control" />
+									<span class="input-group-addon"> <i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="changeNumber" class="col-sm-2 control-label">Change
+									Number</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{changeNumber}"
+										class="form-control" /> <span class="input-group-addon">
+										<i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="incidentNumber" class="col-sm-2 control-label">Incident
+									Number</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{incidentNumber}"
+										class="form-control" /> <span class="input-group-addon">
+										<i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+							<div th:class="form-group">
+								<label for="otherSystemOutage" class="col-sm-2 control-label">Other
+									System Outage</label>
+								<div class="col-sm-4">
+                                    <select th:field="*{otherSystemOutage}" class="form-control">
+                                        <option th:value="true">Yes</option>
+                                        <option th:value="false">No</option>
+                                    </select>
+                                </div>
+							</div>
+
+							<div th:class="form-group">
+								<label for="otherSystemName" class="col-sm-2 control-label">Other
+									System Name</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{otherSystemName}"
+										class="form-control" /> <span class="input-group-addon">
+										<i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+							<div th:class="form-group">
+								<label for="otherSystemDowntime" class="col-sm-2 control-label">Other
+									System Outage</label>
+								<div class="col-sm-4 input-group"
+									style="padding: 0 15px 0 15px;">
+									<input type="text" th:field="*{otherSystemDowntime}"
+										class="form-control" /> <span class="input-group-addon">
+										<i class="fa fa-info"></i>
+									</span>
+								</div>
+							</div>
+
+
+							<div th:class="form-group">
+								<button type="submit" class="btn btn-primary"
+									style="float: centre;">Save</button>
+									
+								<button type="button" class="btn btn-default"
+                                    style="float: centre;" onclick="javascript:closeForm();">Cancel</button>
+							</div>
+
+						</form>
+
+					</div>
+
+
+
+
+				</div>
+			</div>
+		</div>
+
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			$(function() {
+
+				$('#start-date').datetimepicker({
+					useCurrent : true,
+					icons : {
+						date : 'fa fa-calendar'
+					},
+					pickTime : false,
+					showToday : true
+				});
+
+				$('#end-date').datetimepicker({
+					useCurrent : true,
+					icons : {
+						date : 'fa fa-calendar'
+					},
+					pickTime : false,
+					showToday : true
+				});
+
+				var plannedSelect = $('#planned'), otherSystemOutageSelect = $('#otherSystemOutage'), outageTypeSelect = $('#outageType'), affectedSystemSelect = $('#affectedSystem');
+				
+		
+
+				plannedSelect.selectbox('attach');
+				otherSystemOutageSelect.selectbox('attach');
+				outageTypeSelect.selectbox('attach');
+				affectedSystemSelect.selectbox('attach');
+
+			});
+			
+			function closeForm() {
+				$(location).attr('href', './../../wls');
+			}
+			
+			/*]]>*/
+		</script>
+
+
+	</th:block>
+</body>
+</html>

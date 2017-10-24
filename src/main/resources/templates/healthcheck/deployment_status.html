@@ -1,0 +1,58 @@
+<html layout:decorator="layouts/navbar_layout">
+
+<head>
+<style>
+th,td {
+	text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+	<th:block layout:fragment="content">
+		<div id="page-wrapper">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-money"></i><span>Deployment</span>
+					</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th th:text="#{deploymentView.packageId}">Package_Id</th>
+									<th th:text="#{deploymentView.packageFamily}">Package_Family</th>
+									<th th:text="#{deploymentView.project}">Project</th>
+									<th th:text="#{deploymentView.version}">Version</th>
+									<th th:text="#{deploymentView.containerPackageId}">Container_Package_Id</th>
+									<th th:text="#{deploymentView.status}">Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="deploymentView: ${deploymentViews}">
+									<td th:text="${deploymentView.packageId}"></td>
+									<td th:text="${deploymentView.packageFamily}"></td>
+									<td th:text="${deploymentView.project}"></td>
+									<td th:text="${deploymentView.version}"></td>
+									<td th:text="${deploymentView.containerPackageId}"></td>
+									<td th:text="${deploymentView.status}"></td>
+								</tr>
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</th:block>
+</body>
+
+</html>

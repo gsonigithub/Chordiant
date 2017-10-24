@@ -1,0 +1,251 @@
+<html layout:decorator="layouts/email_layout">
+<body>
+	<th:block layout:fragment="content">
+		<div>
+			<h1>
+				Health Card at <span th:text="${dateReported}"></span>
+			</h1>
+
+			<h2>DB status</h2>
+
+			<h3>StandBy DB</h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Table Name</th>
+						<th>Data Available</th>
+						<th>Time taken</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="databaseView: ${standbyDBViews}">
+						<td th:text="${databaseView.tableName}"></td>
+						<td th:text="${databaseView.dataAvailable}"></td>
+						<td th:text="${databaseView.timeTaken}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<h3>Interim DB</h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Table Name</th>
+						<th>Data Available</th>
+						<th>Time taken</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="databaseView: ${interimDBViews}">
+						<td th:text="${databaseView.tableName}"></td>
+						<td th:text="${databaseView.dataAvailable}"></td>
+						<td th:text="${databaseView.timeTaken}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>Deployment status</h2>
+			<table border="1">
+				<thead>
+					<tr>
+						<th th:text="#{deploymentView.packageId}">Package_Id</th>
+						<th th:text="#{deploymentView.packageFamily}">Package_Family</th>
+						<th th:text="#{deploymentView.project}">Project</th>
+						<th th:text="#{deploymentView.version}">Version</th>
+						<th th:text="#{deploymentView.containerPackageId}">Container_Package_Id</th>
+						<th th:text="#{deploymentView.status}">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="deploymentView: ${deploymentViews}">
+						<td th:text="${deploymentView.packageId}"></td>
+						<td th:text="${deploymentView.packageFamily}"></td>
+						<td th:text="${deploymentView.project}"></td>
+						<td th:text="${deploymentView.version}"></td>
+						<td th:text="${deploymentView.containerPackageId}"></td>
+						<td th:text="${deploymentView.status}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+
+			<h2>Materialised View</h2>
+
+			<h3>NBA_REPORTS_MAIN_MVIEW_ALL</h3>
+
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Object Name</th>
+						<th>Object Type</th>
+						<th>Last DDL</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="reportingView: ${reportingViews}">
+						<td th:text="${reportingView.objectName}"></td>
+						<td th:text="${reportingView.objectType}"></td>
+						<td th:text="${reportingView.lastDdl}"></td>
+
+					</tr>
+				</tbody>
+
+			</table>
+
+			<h3>Recharge and Get</h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Count of updates for last 4hrs</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${rechargeAndGetCount}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<h2>J4U Web Services</h2>
+
+			<h3>pcho001zatcrh</h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th th:text="#{webServiceStatusView.port}">Port</th>
+						<th th:text="#{webServiceStatusView.offersAvailable}">Offers
+							Available</th>
+						<th th:text="#{webServiceStatusView.status}">Status</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="webServiceView: ${pcho001zatcrhWebServices}">
+						<td th:text="${webServiceView.port}"></td>
+						<td th:text="${webServiceView.offersAvailable}"></td>
+						<td th:text="${webServiceView.status}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+			<h3>pcho002zafsrh</h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th th:text="#{webServiceStatusView.port}">Port</th>
+						<th th:text="#{webServiceStatusView.offersAvailable}">Offers
+							Available</th>
+						<th th:text="#{webServiceStatusView.status}">Status</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="webServiceView: ${pcho002zafsrhWebServices}">
+						<td th:text="${webServiceView.port}"></td>
+						<td th:text="${webServiceView.offersAvailable}"></td>
+						<td th:text="${webServiceView.status}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+			<h3>pcho003zatcrh</h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th th:text="#{webServiceStatusView.port}">Port</th>
+						<th th:text="#{webServiceStatusView.offersAvailable}">Offers
+							Available</th>
+						<th th:text="#{webServiceStatusView.status}">Status</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="webServiceView: ${pcho003zatcrhWebServices}">
+						<td th:text="${webServiceView.port}"></td>
+						<td th:text="${webServiceView.offersAvailable}"></td>
+						<td th:text="${webServiceView.status}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+
+			<h3>pcho004zafsrh</h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th th:text="#{webServiceStatusView.port}">Port</th>
+						<th th:text="#{webServiceStatusView.offersAvailable}">Offers
+							Available</th>
+						<th th:text="#{webServiceStatusView.status}">Status</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="webServiceView: ${pcho004zafsrhWebServices}">
+						<td th:text="${webServiceView.port}"></td>
+						<td th:text="${webServiceView.offersAvailable}"></td>
+						<td th:text="${webServiceView.status}"></td>
+					</tr>
+				</tbody>
+
+			</table>
+			<h2>J4U Offers stats for last 4 hours</h2>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>USERNAME</th>
+						<th>OFFER_EXISTS_IND</th>
+						<th>RESPONSE</th>
+						<th>FULFILMENT_IND</th>
+						<th>NUM_RECORDS</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="offerView: ${offerViews}">
+						<td th:text="${offerView.username}"></td>
+						<td th:text="${offerView.offerExistsInd}"></td>
+						<td th:text="${offerView.response}"></td>
+						<td th:text="${offerView.fulfilmentInd}"></td>
+						<td th:text="${offerView.numRecords}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>Port Availability</h2>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Server Name</th>
+						<th>Port 7031</th>
+						<th>Port 7032</th>
+						<th>Port 7033</th>
+						<th>Port 7034</th>
+						<th>Port 7035</th>
+						<th>Port 7036</th>
+						<th>Port 7037</th>
+						<th>Port 7038</th>
+						<th>Port 7039</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="portStatusView: ${portStatusViews}">
+						<td th:text="${portStatusView.host}"></td>
+						<td th:text="${portStatusView.p7031}"></td>
+						<td th:text="${portStatusView.p7032}"></td>
+						<td th:text="${portStatusView.p7033}"></td>
+						<td th:text="${portStatusView.p7034}"></td>
+						<td th:text="${portStatusView.p7035}"></td>
+						<td th:text="${portStatusView.p7036}"></td>
+						<td th:text="${portStatusView.p7037}"></td>
+						<td th:text="${portStatusView.p7038}"></td>
+						<td th:text="${portStatusView.p7039}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+
+		</div>
+	</th:block>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html layout:decorator="layouts/simple_layout">
+    <body>
+        <th:block layout:fragment="content">
+            <div id="logo"></div>
+            <section id="content">
+                <h4>Please sign in</h4>
+                <form action="#" th:action="@{/login}" th:object="${loginForm}" method="post">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input class="form-control" type="text" th:field="*{username}" placeholder="Username" th:value="${username}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input class="form-control" type="password" th:field="*{password}" placeholder="Password" th:value="${password}" />
+                    </div>
+                    <div class="form-group inline">
+                        <label for="remember-me" class="inline">
+                            <input type="checkbox" id="remember-me" name="remember-me" />
+                            <span>Remember me</span>
+                        </label>
+                    </div>
+                    <div id="login-submit-container">
+                        <a id="login-submit" href="javascript:void(0);" class="btn">Sign In</a>
+                    </div>
+                </form>
+            </section>
+            <script>
+            //<![CDATA[
+                $(document).ready(function() {
+
+                    var form = $('#content form');
+
+                    // Validate the login form
+                    var validateLoginForm = function() {
+                    	
+                        return [];
+                    };
+
+                    // Style check boxes
+                    $('#content form input').iCheck({
+                        checkboxClass: 'icheckbox_minimal-grey',
+                        handle: 'checkbox'
+                    });
+
+                    var doLogin = function() {
+
+                        var errors = validateLoginForm();
+
+                        if (errors.length > 0) {
+
+                        } else {
+                            form.submit();
+                        }
+                    };
+
+                    // Handle login form submission
+                    $('#login-submit').click(function() {
+                        doLogin();
+                    });
+
+                    form.keydown(function(event) {
+
+                        if (event.keyCode == 13) {
+                            doLogin();
+                        }
+                    });
+                });
+            //]]>
+            </script>
+        </th:block>
+    </body>
+</html>

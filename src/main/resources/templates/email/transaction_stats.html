@@ -1,0 +1,41 @@
+<html layout:decorator="layouts/email_layout">
+<body>
+	<th:block layout:fragment="content">
+		<div>
+
+			<h3>
+				Transaction Stats for <span th:text="${dateReported}"></span>
+			</h3>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Offer Type</th>
+						<th>Total Transaction Count</th>
+						<th>Average Latency</th>
+						<th>% under 400ms SLA</th>
+						<th>% under 500ms SLA</th>
+						<th>% under 600ms SLA</th>
+						<th>% under 700ms SLA</th>
+						<th>% under 800ms SLA</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="view: ${transactionViews}">
+						<td th:text="${view.url}"></td>
+						<td th:text="${view.transactionCount}"></td>
+						<td th:text="${view.averageLatency}"></td>
+						<td th:text="${view.inSlaPerc400}"></td>
+						<td th:text="${view.inSlaPerc500}"></td>
+						<td th:text="${view.inSlaPerc600}"></td>
+						<td th:text="${view.inSlaPerc700}"></td>
+						<td th:text="${view.inSlaPerc800}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+
+
+		</div>
+	</th:block>
+</body>
+</html>

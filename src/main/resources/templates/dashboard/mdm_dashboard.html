@@ -1,0 +1,349 @@
+<html layout:decorator="layouts/navbar_layout">
+<body>
+	<th:block layout:fragment="content">
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-tachometer"></i><span>MDM Dashboard</span>
+					</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="formContainer">
+						<form class="form-horizontal" th:action="@{/mdm}"
+							th:object="${criteriaView}" id="criteriaView" method="post"
+							role="form">
+
+							<div
+								th:class="${#fields.hasErrors('startDate')} ? 'form-group has-error' : 'form-group'">
+								<label for="startDate" class="col-sm-2 control-label"
+									th:text="#{criteriaView.startDate}"></label>
+								<div class="col-sm-4">
+									<div id="start-date" class="input-group date"
+										data-date-format="YYYY-MM-DD">
+										<input type="text" th:field="*{startDate}"
+											class="form-control" placeholder="yyyy-mm-dd" /> <span
+											class="input-group-addon"> <i class="fa fa-calendar"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div
+								th:class="${#fields.hasErrors('endDate')} ? 'form-group has-error' : 'form-group'">
+								<label for="endDate" class="col-sm-2 control-label"
+									th:text="#{criteriaView.endDate}"></label>
+								<div class="col-sm-4">
+									<div id="end-date" class="input-group date"
+										data-date-format="YYYY-MM-DD">
+										<input type="text" th:field="*{endDate}" class="form-control"
+											placeholder="yyyy-mm-dd" /> <span class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+							
+							<div
+                                th:class="${#fields.hasErrors('interval')} ? 'form-group has-error' : 'form-group'">
+                                <label for="interval" class="col-sm-2 control-label">Interval</label>
+                                <div class="col-sm-4">
+                                    <select th:field="*{interval}" class="form-control">
+                                        <option th:value="daily">Daily</option>
+                                        <option th:value="monthly">Monthly</option>
+                                    </select>
+                                </div>
+                            </div>
+
+							<div
+								th:class="${#fields.hasErrors('processName')} ? 'form-group has-error' : 'form-group'">
+								<label for="processName" class="col-sm-2 control-label">Process
+									Name</label>
+								<div class="col-sm-4">
+									<select th:field="*{processName}" class="form-control">
+										<option th:each="processName : ${processList}"
+											th:text="${processName}" th:value="${processName}" />
+									</select>
+								</div>
+							</div>
+							<div th:class="form-group">
+								<button type="submit" class="btn btn-primary"
+									style="float: centre;">View</button>
+							</div>
+
+						</form>
+
+					</div>
+				</div>
+				
+				<div class="col-lg-12">
+                    <div id="graphcontainer" style="width: 100%; height: 600px;"></div>
+                </div>
+
+				<div class="col-lg-12">
+					<div id="chart2" style="width: 100%; height: 600px;"></div>
+				</div>
+
+
+			</div>
+		</div>
+		<script th:inline="javascript">
+        
+            /*<![CDATA[*/
+            $(function() {
+            	
+                // Task start date
+                $('#start-date').datetimepicker({
+                    useCurrent : true,
+                    icons : {
+                        date : 'fa fa-calendar'
+                    },
+                    pickTime : false,
+                    showToday : true
+                });
+
+                // Task end date
+                $('#end-date').datetimepicker({
+                    useCurrent : true,
+                    icons : {
+                        date : 'fa fa-calendar'
+                    },
+                    pickTime : false,
+                    showToday : true
+                });
+                
+                var processNameSelect = $('#processName');
+                
+                processNameSelect.selectbox('attach');
+                
+                var mdmList = /*[[${mdmViews}]]*/;
+                
+                if(mdmList != null) {
+                	
+	                var numOfRecords = [], runtime = [], intervals = [];
+	                
+	                $.each(mdmList, function(i,mdmCountView){
+	                	
+	                	//highcharts
+                        intervals.push(mdmCountView.processedDate);
+                        numOfRecords.push(mdmCountView.loadedRecords);
+                        runtime.push(mdmCountView.runTime);
+	                	
+	                	//jqplot
+	                	//numOfRecordsLine.push(new Array(mdmCountView.processedDate, mdmCountView.loadedRecords));
+	                	//runtimeLine.push(new Array(mdmCountView.processedDate, mdmCountView.runTime));
+	                	
+	                	
+	                });
+	                
+	                $('#graphcontainer')
+                    .highcharts(
+                        {
+                            chart : {
+                                zoomType : 'xy',
+                                events: {
+                                    addSeries: function() {
+                                      var c = this;
+                                      setTimeout(function(){c.xAxis[0].setExtremes(c.xAxis[0].dataMin, c.xAxis[0].dataMax)}, 10);
+                                    },
+                                    load: function() {
+                                      var c = this;
+                                      setTimeout(function(){c.xAxis[0].setExtremes(c.xAxis[0].dataMin, c.xAxis[0].dataMax)}, 10);
+                                    }
+                                  }
+                            },
+                            title : {
+                                text : 'MDM statistics'
+                            },
+                            subtitle : {
+                                text : 'Source: CDT_HISTORY_TABLE'
+                            },
+                            xAxis : [ {
+                                categories : intervals,
+                                labels : {
+                                    overflow: false,
+                                    rotation: -90,
+                                    align: 'right',
+                                    style: {
+                                        lineHeight: 10
+                                    }
+                                },
+                                events: {
+                                    setExtremes: function (event) {
+                                      if (Math.abs(this.options.labels.rotation) == 90) {
+                                        var labelWidth = parseInt(this.options.labels.style.lineHeight) + 2;
+                                        var plotAreaWidth = parseInt(this.chart.plotBox.width);
+                                        var labelsCount = Math.floor(plotAreaWidth / labelWidth);
+                                        if (event.max !== null && event.max !== undefined) {
+                                          var pointsCount = Math.round(event.max - event.min);
+                                        } else {
+                                          var pointsCount = Math.round(this.dataMax - this.dataMin);
+                                        }
+                                        var step = Math.ceil(pointsCount / (labelsCount * (this.tickInterval == null ? 1 : this.tickInterval)));
+                                        this.update({'labels': {'step': step}}, true);
+                                      }
+                                    }
+                                  }
+                            } ],
+                            yAxis : [
+                                    { // Primary yAxis
+                                        labels : {
+                                            format : '{value} n',
+                                            style : {
+                                                color : '#0066FF'
+                                                /* Highcharts
+                                                        .getOptions().colors[2] */
+                                            }
+                                        },
+                                        title : {
+                                            text : 'Number of Records',
+                                            style : {
+                                                color : '#0066FF'
+                                                    /* Highcharts
+                                                    .getOptions().colors[2] */
+                                            }
+                                        },
+                                        opposite : false
+
+                                    },
+                                    { // Secondary yAxis
+                                        gridLineWidth : 0,
+                                        title : {
+                                            text : 'Runtime',
+                                            style : {
+                                                color : '#0066FF'
+                                                    /* Highcharts
+                                                    .getOptions().colors[2] */
+                                            }
+                                        },
+                                        labels : {
+                                            format : '{value} s',
+                                            style : {
+                                                color : '#0066FF'
+                                                    /* Highcharts
+                                                    .getOptions().colors[2] */
+                                            }
+                                        },
+                                        opposite : true
+
+                                    }],
+                            tooltip : {
+                                shared : true
+                            },
+                            /* legend : {
+                                layout : 'vertical',
+                                align : 'right',
+                                x : 450,
+                                verticalAlign : 'top',
+                                y : 120,
+                                floating : true,
+                                backgroundColor : (Highcharts.theme && Highcharts.theme.legendBackgroundColor)
+                                        || '#FFFFFF'
+                            }, */
+                            series : [
+                                    {
+                                        name : 'MDM Loaded Records',
+                                        type : 'column',
+                                        yAxis : 0,
+                                        data : numOfRecords,
+                                        tooltip : {
+                                            valueSuffix : ''
+                                        }
+
+                                    },
+                                    {
+                                        name : 'Runtime',
+                                        type : 'line',
+                                        yAxis : 1,
+                                        data : runtime,
+                                        marker : {
+                                            enabled : false
+                                        },
+                                        tooltip : {
+                                            valueSuffix : ' %'
+                                        }
+
+                                    }]
+                        });
+	                
+	                
+	                
+	               /*  var plot2 = $.jqplot('chart2', [numOfRecordsLine, runtimeLine], {
+	                    series:
+	                        [
+	                         {
+	                             renderer:$.jqplot.BarRenderer,
+	                             rendererOptions: {
+	                                   color: '#90CAF9'   
+	                                },
+	                             //pointLabels: { show: true }
+	                         }, 
+	                         {
+	                             color:'Red',
+	                             showMarker:false,
+	                             lineWidth:2,
+	                             xaxis:'xaxis', yaxis:'y2axis',
+	                             //pointLabels: { show: true }
+	                             
+	                         }
+	                        ],
+	                    axesDefaults: {
+	                        tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
+	                        tickOptions: {
+	                          angle: 30
+	                        }
+	                    },
+	                    // legend: {
+	                    //    show: true,
+	                        //location: 'outside',
+	                    //    placement: 'outside'
+	                  //  }, 
+	                    axes: {
+	                      xaxis: {
+	                        label: "Request Date",
+	                        labelOptions:{
+	                        	textColor:'#0066FF'
+	                        },
+	                        renderer: $.jqplot.CategoryAxisRenderer
+	                      },
+	                      yaxis: {
+	                        label: "Total Count",
+	                        labelOptions:{
+	                        	textColor:'#0066FF'
+	                        },
+	                        autoscale:true
+	                      },
+	                      y2axis: {
+	                        label: "Run Time",
+	                        labelOptions:{
+	                        	textColor:'#0066FF'
+	                        },
+	                        autoscale:true
+	                      }
+	                    }
+	                  });
+	                
+	                $('#chart2').show();
+	                 */
+                }
+                
+                
+                
+                
+                
+            });
+
+
+            
+            
+
+            
+            
+            /*]]>*/
+        </script>
+	</th:block>
+</body>
+</html>

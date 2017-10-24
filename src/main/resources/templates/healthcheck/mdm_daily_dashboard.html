@@ -1,0 +1,58 @@
+<html layout:decorator="layouts/navbar_layout">
+
+<head>
+<style>
+th,td {
+	text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+	<th:block layout:fragment="content">
+		<div id="page-wrapper">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-money"></i><span>MDM Daily</span>
+					</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-responsive">
+						<table class="table">
+
+							<thead>
+								<tr>
+									<th th:text="#{mdmView.processName}">PROCESS_NAME</th>
+									<th th:text="#{mdmView.loadedRecordToday}">LOADED_RECORDS_TODAY</th>
+									<th th:text="#{mdmView.loadedRecordOneDayAgo}">LOADED_RECORDS_ONE_DAY_AGO</th>
+									<th th:text="#{mdmView.loadedRecordTwoDayAgo}">LOADED_RECORDS_TWO_DAYS_AGO</th>
+									<th th:text="#{mdmView.loadedRecordThreeDayAgo}">LOADED_RECORDS_THREE_DAYS_AGO</th>
+									<th th:text="#{mdmView.loadedRecordFourDayAgo}">LOADED_RECORDS_FOUR_DAYS_AGO</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="mdmView: ${mdmViews}">
+									<td th:text="${mdmView.processName}"></td>
+									<td th:text="${mdmView.loadedRecordToday}"></td>
+									<td th:text="${mdmView.loadedRecordOneDayAgo}"></td>
+									<td th:text="${mdmView.loadedRecordTwoDayAgo}"></td>
+									<td th:text="${mdmView.loadedRecordThreeDayAgo}"></td>
+									<td th:text="${mdmView.loadedRecordFourDayAgo}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</th:block>
+</body>
+
+</html>

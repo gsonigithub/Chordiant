@@ -1,0 +1,104 @@
+<html layout:decorator="layouts/navbar_layout">
+<body>
+	<th:block layout:fragment="content">
+
+
+		<div id="page-wrapper">
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						<i class="fa fa-money"></i><span>Offers</span>
+					</h1>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="formContainer">
+						<form class="form-horizontal" th:action="@{/offers}"
+							th:object="${criteriaView}" id="criteriaView" method="post"
+							role="form">
+
+							<div
+								th:class="${#fields.hasErrors('dateReportingOn')} ? 'form-group has-error' : 'form-group'">
+								<label for="startDate" class="col-sm-2 control-label">Date Reporting On</label>
+								<div class="col-sm-4">
+									<div id="dateReportingOn" class="input-group date"
+										data-date-format="YYYY-MM-DD">
+										<input type="text" th:field="*{dateReportingOn}"
+											class="form-control" /> <span
+											class="input-group-addon"> <i class="fa fa-calendar"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div th:class="form-group">
+								<button type="submit" class="btn btn-primary"
+									style="float: centre;">View</button>
+							</div>
+
+						</form>
+
+					</div>
+				</div>
+
+
+			</div>
+
+
+			<div class="row">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>USERNAME</th>
+								<th>OFFER_EXISTS_IND</th>
+								<th>RESPONSE</th>
+								<th>FULFILMENT_IND</th>
+								<th>NUM_RECORDS</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="offerView: ${offerViews}">
+								<td th:text="${offerView.username}"></td>
+								<td th:text="${offerView.offerExistsInd}"></td>
+								<td th:text="${offerView.response}"></td>
+								<td th:text="${offerView.fulfilmentInd}"></td>
+								<td th:text="${offerView.numRecords}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+		
+		<script th:inline="javascript">
+        
+            /*<![CDATA[*/
+            $(function() {
+                
+               
+                $('#dateReportingOn').datetimepicker({
+                    useCurrent : true,
+                    icons : {
+                        date : 'fa fa-calendar'
+                    },
+                    pickTime : false,
+                    showToday : true
+                });
+                
+                
+                
+            });
+            /*]]>*/
+        </script>
+		
+		
+		
+	</th:block>
+</body>
+</html>
